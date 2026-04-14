@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@google/generative-ai"],
+  serverExternalPackages: ["@google/generative-ai"],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "*.supabase.co" },
@@ -12,6 +13,13 @@ const nextConfig: NextConfig = {
       { protocol: "https", hostname: "images.unsplash.com" },
       { protocol: "https", hostname: "postimg.cc" },
     ],
+  },
+  experimental: {
+    turbo: {
+      resolveAlias: {
+        "@google/generative-ai": "./node_modules/@google/generative-ai/dist/index.mjs",
+      },
+    },
   },
 };
 
