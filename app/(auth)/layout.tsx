@@ -18,7 +18,7 @@ export default function AuthLayout({ children }: { children: ReactNode }) {
 
         {/* Logo */}
         <div>
-          <span className="label-caps text-[#ACBFA4] tracking-[0.2em]">Central Bolivia</span>
+          <span className="label-caps text-[#ACBFA4] tracking-[0.2em]">Central</span>
           <div className="mt-2 w-10 h-px bg-[#FF7F11]" />
         </div>
 

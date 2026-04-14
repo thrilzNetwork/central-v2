@@ -34,8 +34,11 @@ export default async function DashboardLayout({ children }: { children: ReactNod
       {/* pt-14 on mobile accounts for the fixed 56px top bar */}
       <main className="flex-1 min-w-0 ml-0 lg:ml-64 pt-14 lg:pt-0">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 lg:py-8">
-          <TrialGuard 
-            trialExpiresAt={org?.trial_expires_at || profile.created_at} 
+          <TrialGuard
+            trialExpiresAt={
+              org?.trial_expires_at ||
+              new Date(new Date(profile.created_at).getTime() + 3 * 24 * 60 * 60 * 1000).toISOString()
+            }
             isActive={org?.is_active ?? true}
           >
             {children}

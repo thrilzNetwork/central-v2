@@ -40,7 +40,7 @@ export function DomainManager({ currentSlug, domains: initial }: DomainManagerPr
   const [error, setError] = useState<string | null>(null);
   const [showDns, setShowDns] = useState<string | null>(null);
 
-  const subdomainUrl = `https://${currentSlug}.centralbolivia.com`;
+  const subdomainUrl = `https://${currentSlug}.central.bo`;
 
   async function handleAdd() {
     if (!newDomain.trim()) return;
@@ -87,7 +87,7 @@ export function DomainManager({ currentSlug, domains: initial }: DomainManagerPr
             <svg className="w-4 h-4 text-[#ACBFA4] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
             </svg>
-            <span className="font-mono text-sm text-[#262626] truncate">{currentSlug}.centralbolivia.com</span>
+            <span className="font-mono text-sm text-[#262626] truncate">{currentSlug}.central.bo</span>
             <CopyButton text={subdomainUrl} />
           </div>
           <div className="flex items-center gap-2">

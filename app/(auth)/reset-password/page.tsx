@@ -84,7 +84,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="w-full max-w-sm animate-fade-up">
       <div className="lg:hidden mb-10">
-        <span className="label-caps text-[#6B7565]">Central Bolivia</span>
+        <span className="label-caps text-[#6B7565]">Central</span>
         <div className="mt-2 w-8 h-0.5 bg-[#FF7F11]" />
       </div>
 

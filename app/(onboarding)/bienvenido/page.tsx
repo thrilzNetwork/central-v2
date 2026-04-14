@@ -1,7 +1,7 @@
 import { ChatWizard } from "@/components/onboarding/ChatWizard";
 
 export const metadata = {
-  title: "Bienvenido — Central Bolivia",
+  title: "Bienvenido — Central",
   description: "Configura tu portal inmobiliario en minutos",
 };
 

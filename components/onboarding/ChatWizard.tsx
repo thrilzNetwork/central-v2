@@ -160,7 +160,7 @@ export function ChatWizard() {
         return;
       }
 
-      // ── Step 3: Redirect to dashboard ───────────────────────────────
+      // ── Step 3: Redirect to dashboard (3-day demo starts) ──────────
       await new Promise((r) => setTimeout(r, 400));
       window.location.href = "/dashboard?bienvenido=1";
 
@@ -187,7 +187,7 @@ export function ChatWizard() {
           <div className="w-2 h-2 rounded-full bg-[#FF7F11] animate-pulse" />
         </div>
         <div>
-          <p className="text-sm font-medium text-[#262626]">Asistente Central Bolivia</p>
+          <p className="text-sm font-medium text-[#262626]">Asistente Central</p>
           <p className="label-caps text-[#ACBFA4]">Configuración de Portal</p>
         </div>
         <div className="ml-auto">

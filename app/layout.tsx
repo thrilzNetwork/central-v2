@@ -3,14 +3,14 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: {
-    default: "Central Bolivia — PropTech para Agentes Inmobiliarios",
-    template: "%s — Central Bolivia",
+    default: "Central — PropTech para Agentes Inmobiliarios",
+    template: "%s — Central",
   },
   description:
     "La plataforma SaaS que transforma agentes inmobiliarios bolivianos en marcas digitales. Portal propio, descripciones, y captura de leads automática.",
   keywords: ["inmobiliaria", "bolivia", "bienes raíces", "santa cruz", "agente inmobiliario"],
   openGraph: {
-    siteName: "Central Bolivia",
+    siteName: "Central",
     locale: "es_BO",
     type: "website",
   },

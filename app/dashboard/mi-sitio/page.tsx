@@ -37,11 +37,11 @@ export default async function MiSitioPage() {
           <div>
             <p className="label-caps text-[#6B7565]">Tu portal en vivo</p>
             <p className="text-sm text-[#262626] font-medium mt-0.5">
-              {profile.slug}.centralbolivia.com
+{profile.slug}.central.bo
             </p>
           </div>
           <a
-            href={`https://${profile.slug}.centralbolivia.com`}
+            href={`https://${profile.slug}.central.bo`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1.5 px-3 py-2 bg-[#FF7F11] text-white text-xs font-medium rounded-sm hover:bg-[#CC6500] transition-colors whitespace-nowrap flex-shrink-0"

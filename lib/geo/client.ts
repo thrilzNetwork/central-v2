@@ -1,5 +1,5 @@
 /**
- * Central Bolivia geo client — powered by Photon (Komoot + OpenStreetMap).
+ * Central geo client — powered by Photon (Komoot + OpenStreetMap).
  * No API key required. Fully free.
  * Docs: https://photon.komoot.io
  */

@@ -72,7 +72,7 @@ export default function LoginPage() {
           Tu prueba gratuita ha finalizado
         </h2>
         <p className="text-sm text-[#6B7565] mb-8 leading-relaxed">
-          Los 3 días de acceso de demostración han concluido. Para continuar usando Central Bolivia y mantener tu portal activo, contáctanos para activar tu plan.
+          Los 3 días de acceso de demostración han concluido. Para continuar usando Central y mantener tu portal activo, contáctanos para activar tu plan.
         </p>
         <a
           href="tel:+19546488174"
@@ -106,7 +106,7 @@ export default function LoginPage() {
     <div className="w-full max-w-sm animate-fade-up">
       {/* Mobile logo */}
       <div className="lg:hidden mb-10">
-        <span className="label-caps text-[#6B7565]">Central Bolivia</span>
+        <span className="label-caps text-[#6B7565]">Central</span>
         <div className="mt-2 w-8 h-0.5 bg-[#FF7F11]" />
       </div>
 
@@ -169,7 +169,7 @@ export default function LoginPage() {
 
       <div className="mt-8 pt-6 border-t border-[#EAE7DC]">
         <p className="text-sm text-[#6B7565] text-center">
-          ¿Eres nuevo en Central Bolivia?{" "}
+          ¿Eres nuevo en Central?{" "}
           <Link
             href="/bienvenido"
             className="text-[#FF7F11] font-medium hover:underline"

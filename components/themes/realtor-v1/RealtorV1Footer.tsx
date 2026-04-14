@@ -24,13 +24,13 @@ export function RealtorV1Footer() {
           <p>
             Powered by{" "}
             <a
-              href="https://centralbolivia.com"
+              href="https://central.bo"
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-white transition-colors"
               style={{ color: profile.primary_color }}
             >
-              Central Bolivia
+              Central
             </a>
           </p>
         </div>

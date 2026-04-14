@@ -3,7 +3,7 @@ import { redirect } from "next/navigation";
 import { DashboardHome } from "@/components/dashboard/DashboardHome";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Panel — Central Bolivia" };
+export const metadata: Metadata = { title: "Panel — Central" };
 
 export default async function DashboardPage() {
   const supabase = await createClient();

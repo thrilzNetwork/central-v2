@@ -155,7 +155,7 @@ export function DashboardSidebar({ profile, userId }: DashboardSidebarProps) {
             href={
               typeof window !== "undefined" && window.location.hostname === "localhost"
                 ? `http://${profile.slug}.localhost:3000`
-                : `https://${profile.slug}.centralbolivia.com`
+                : `https://${profile.slug}.central.bo`
             }
             target="_blank"
             rel="noopener noreferrer"

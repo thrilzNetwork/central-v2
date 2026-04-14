@@ -8,7 +8,7 @@ import { AddressAutocomplete } from "@/components/geo/AddressAutocomplete";
 import { MiniMap } from "@/components/geo/MiniMap";
 import type { AutocompleteSuggestion } from "@/lib/geo/client";
 
-type InputMode = "address" | "pdf";
+type InputMode = "address" | "pdf" | "image";
 type PropertyType = "casa" | "departamento" | "terreno" | "oficina" | "local_comercial" | "otro";
 
 export function MagicPropertyForm() {
@@ -18,6 +18,7 @@ export function MagicPropertyForm() {
   // lat/lng from autocomplete selection (pre-geocoded before magic populate)
   const [previewCoords, setPreviewCoords] = useState<{ lat: number; lng: number } | null>(null);
   const [pdfFile, setPdfFile] = useState<File | null>(null);
+  const [imageFile, setImageFile] = useState<File | null>(null);
   const [generating, setGenerating] = useState(false);
   const [generated, setGenerated] = useState<Record<string, unknown> | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -46,6 +47,7 @@ export function MagicPropertyForm() {
   async function handleMagicGenerate() {
     if (mode === "address" && !address.trim()) return;
     if (mode === "pdf" && !pdfFile) return;
+    if (mode === "image" && !imageFile) return;
 
     setGenerating(true);
     setError(null);
@@ -59,6 +61,10 @@ export function MagicPropertyForm() {
         const arrayBuffer = await pdfFile.arrayBuffer();
         const base64 = Buffer.from(arrayBuffer).toString("base64");
         body = { pdfBase64: base64, fileName: pdfFile.name };
+      } else if (imageFile) {
+        const arrayBuffer = await imageFile.arrayBuffer();
+        const base64 = Buffer.from(arrayBuffer).toString("base64");
+        body = { imageBase64: base64, fileName: imageFile.name };
       }
 
       const res = await fetch("/api/magic-property", {
@@ -142,7 +148,7 @@ export function MagicPropertyForm() {
 
         {/* Mode tabs */}
         <div className="flex gap-2 mb-5">
-          {(["address", "pdf"] as InputMode[]).map((m) => (
+          {(["address", "pdf", "image"] as InputMode[]).map((m) => (
             <button
               key={m}
               onClick={() => setMode(m)}
@@ -153,7 +159,7 @@ export function MagicPropertyForm() {
                   : { backgroundColor: "transparent", color: "#6B7565", borderColor: "#D8D3C8" }
               }
             >
-              {m === "address" ? "📍 Dirección" : "📄 PDF"}
+              {m === "address" ? "📍 Dirección" : m === "pdf" ? "📄 PDF" : "🖼️ Imagen"}
             </button>
           ))}
         </div>
@@ -171,7 +177,7 @@ export function MagicPropertyForm() {
             placeholder="Av. San Martín 456, Equipetrol, Santa Cruz"
             hint="Empieza a escribir — sugerencias vía OpenStreetMap"
           />
-        ) : (
+        ) : mode === "pdf" ? (
           <div>
             <label className="label-caps text-[#6B7565] block mb-2">Archivo PDF</label>
             <div
@@ -196,6 +202,33 @@ export function MagicPropertyForm() {
               accept=".pdf"
               className="hidden"
               onChange={(e) => setPdfFile(e.target.files?.[0] ?? null)}
+            />
+          </div>
+        ) : (
+          <div>
+            <label className="label-caps text-[#6B7565] block mb-2">Imagen</label>
+            <div
+              onClick={() => fileRef.current?.click()}
+              className="border-2 border-dashed border-[#D8D3C8] rounded-sm p-8 text-center cursor-pointer hover:border-[#FF7F11] hover:bg-[#FFF8F2] transition-all"
+            >
+              {imageFile ? (
+                <p className="text-sm text-[#262626]">🖼️ {imageFile.name}</p>
+              ) : (
+                <>
+                  <svg className="w-8 h-8 text-[#ACBFA4] mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  <p className="text-sm text-[#6B7565]">Haz clic para subir una imagen de la propiedad</p>
+                  <p className="text-xs text-[#ACBFA4] mt-1">PNG, JPG, WEBP · Máximo 10MB</p>
+                </>
+              )}
+            </div>
+            <input
+              ref={fileRef}
+              type="file"
+              accept="image/*"
+              className="hidden"
+              onChange={(e) => setImageFile(e.target.files?.[0] ?? null)}
             />
           </div>
         )}
@@ -227,7 +260,7 @@ export function MagicPropertyForm() {
           <Button
             onClick={handleMagicGenerate}
             loading={generating}
-            disabled={mode === "address" ? !address.trim() : !pdfFile}
+            disabled={mode === "address" ? !address.trim() : mode === "pdf" ? !pdfFile : !imageFile}
             className="w-full"
             size="lg"
           >

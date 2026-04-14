@@ -26,7 +26,7 @@ function getReply(input: string, metrics: Metrics, agentName: string): string {
   const q = input.toLowerCase();
 
   if (q.match(/hola|buenos|buenas|hi|hey/))
-    return `¡Hola, ${agentName}! Soy tu asistente de Central Bolivia. Puedo ayudarte con tus propiedades, leads, o cualquier duda sobre tu portal. ¿En qué te ayudo hoy?`;
+    return `¡Hola, ${agentName}! Soy tu asistente de Central. Puedo ayudarte con tus propiedades, leads, o cualquier duda sobre tu portal. ¿En qué te ayudo hoy?`;
 
   if (q.match(/lead|cliente|contacto/)) {
     if (metrics.newLeads > 0)
@@ -50,7 +50,7 @@ function getReply(input: string, metrics: Metrics, agentName: string): string {
     return `Puedes personalizar tu portal completamente en [Mi Sitio](/dashboard/mi-sitio). Cambia el logo, colores, imágenes del hero, nombre de tu brokerage y más.`;
 
   if (q.match(/dominio|url|link|web/))
-    return `Tu portal está en **${agentName.toLowerCase().replace(/\s+/g, "")}.centralbolivia.com**. También puedes conectar un dominio propio en [Dominios](/dashboard/dominios).`;
+    return `Tu portal está en **${agentName.toLowerCase().replace(/\s+/g, "")}.central.bo**. También puedes conectar un dominio propio en [Dominios](/dashboard/dominios).`;
 
   if (q.match(/precio|plan|pago|suscripci/))
     return `Para ver opciones de planes y activar tu cuenta completa, ve a [Facturación](/dashboard/facturacion) o contáctanos directamente al +1 (954) 648-8174.`;
@@ -144,7 +144,7 @@ export function DashboardHome({ agentName, slug, metrics }: DashboardHomeProps) 
             href={
               typeof window !== "undefined" && window.location.hostname === "localhost"
                 ? `http://${slug}.localhost:3000`
-                : `https://${slug}.centralbolivia.com`
+                : `https://${slug}.central.bo`
             }
             target="_blank"
             rel="noopener noreferrer"
@@ -165,7 +165,7 @@ export function DashboardHome({ agentName, slug, metrics }: DashboardHomeProps) 
               <Bot className="w-4 h-4 text-white" />
             </div>
             <div>
-              <p className="text-sm font-medium text-[#262626]">Asistente Central Bolivia</p>
+              <p className="text-sm font-medium text-[#262626]">Asistente Central</p>
               <div className="flex items-center gap-1.5">
                 <div className="w-1.5 h-1.5 rounded-full bg-green-400" />
                 <p className="text-xs text-[#6B7565]">En línea</p>

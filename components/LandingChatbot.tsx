@@ -26,9 +26,9 @@ interface Step {
 const STEPS: Step[] = [
   {
     id: "role",
-    botText: "Hola! 👋 Soy el asistente de Central Bolivia.\n\n¿Cómo describes tu rol?",
+    botText: "Hola! 👋 Soy el asistente de Central.\n\n¿Cómo describes tu rol?",
     inputType: "quick",
-    quickOptions: ["🏢 Agente independiente", "🏛️ Broker / Dueño de agencia", "🌐 Franquicia (Re/Max, C21…)", "📋 Otro"],
+    quickOptions: ["Agente", "Broker"],
     field: "role",
   },
   {
@@ -146,8 +146,8 @@ export function LandingChatbot() {
       setTyping(false);
       const score = scoreLead(data);
       const msg = score === "alto"
-        ? `¡Excelente, ${data.name}! 🎉 Tu perfil es exactamente para quien diseñamos Central Bolivia. Nuestro equipo te contactará en las próximas horas.`
-        : `¡Gracias, ${data.name}! Recibimos tu información. Te contactaremos pronto para mostrarte cómo Central Bolivia puede ayudarte.`;
+        ? `¡Excelente, ${data.name}! 🎉 Tu perfil es exactamente para quien diseñamos Central. Nuestro equipo te contactará en las próximas horas.`
+        : `¡Gracias, ${data.name}! Recibimos tu información. Te contactaremos pronto para mostrarte cómo Central puede ayudarte.`;
       addMsg("bot", msg);
       setDone(true);
     }, 1000);
@@ -159,7 +159,7 @@ export function LandingChatbot() {
   return (
     <>
       {/* Floating button + teaser */}
-      <div style={{ position: "fixed", bottom: 24, left: 20, zIndex: 9999, display: "flex", alignItems: "center", gap: 10 }}>
+      <div style={{ position: "fixed", bottom: 24, right: 20, zIndex: 9999, display: "flex", flexDirection: "row-reverse", alignItems: "center", gap: 10 }}>
         <motion.button
           onClick={() => setOpen(v => !v)}
           whileHover={{ scale: 1.08 }}
@@ -171,7 +171,7 @@ export function LandingChatbot() {
             justifyContent: "center", color: PRIMARY, flexShrink: 0,
             boxShadow: "0 6px 24px rgba(0,0,0,0.25)",
           }}
-          aria-label="Asistente Central Bolivia"
+          aria-label="Asistente Central"
         >
           <AnimatePresence mode="wait" initial={false}>
             {open
@@ -185,9 +185,9 @@ export function LandingChatbot() {
           {teaserVisible && !open && (
             <motion.button
               onClick={() => setOpen(true)}
-              initial={{ opacity: 0, x: -16, scale: 0.9 }}
+              initial={{ opacity: 0, x: 16, scale: 0.9 }}
               animate={{ opacity: 1, x: 0, scale: 1 }}
-              exit={{ opacity: 0, x: -16, scale: 0.9 }}
+              exit={{ opacity: 0, x: 16, scale: 0.9 }}
               transition={{ duration: 0.28, ease: "easeOut" }}
               style={{
                 background: "#262626", border: `1px solid ${PRIMARY}`, cursor: "pointer",
@@ -215,7 +215,7 @@ export function LandingChatbot() {
             exit={{ opacity: 0, y: 20, scale: 0.97 }}
             transition={{ duration: 0.2, ease: "easeOut" }}
             style={{
-              position: "fixed", bottom: 82, left: 20, zIndex: 9998,
+              position: "fixed", bottom: 82, right: 20, zIndex: 9998,
               width: "min(340px, calc(100vw - 32px))",
               background: "#1a1a1a", borderRadius: 16,
               boxShadow: "0 20px 56px rgba(0,0,0,0.55)",
@@ -228,7 +228,7 @@ export function LandingChatbot() {
             <div style={{ background: "#262626", borderBottom: `2px solid ${PRIMARY}`, padding: "12px 16px", display: "flex", alignItems: "center", gap: 10 }}>
               <div style={{ width: 34, height: 34, borderRadius: "50%", background: PRIMARY + "22", border: `1px solid ${PRIMARY}`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, flexShrink: 0 }}>🏠</div>
               <div style={{ flex: 1 }}>
-                <p style={{ color: "#fff", fontWeight: 700, fontSize: 13, margin: 0 }}>Central Bolivia</p>
+                <p style={{ color: "#fff", fontWeight: 700, fontSize: 13, margin: 0 }}>Central</p>
                 <p style={{ color: PRIMARY, fontSize: 10, margin: 0, display: "flex", alignItems: "center", gap: 4 }}>
                   <span style={{ width: 6, height: 6, borderRadius: "50%", background: "#4ade80", display: "inline-block" }} /> Asistente en línea
                 </p>

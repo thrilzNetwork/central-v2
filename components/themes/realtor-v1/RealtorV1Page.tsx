@@ -486,9 +486,9 @@ export function RealtorV1Page({ listings }: RealtorV1PageProps) {
               >{label}</a>
             ))}
           </div>
-          <a href="https://centralbolivia.com" target="_blank" rel="noopener noreferrer"
+          <a href="https://central.bo" target="_blank" rel="noopener noreferrer"
             style={{ fontFamily: sans, fontSize: "0.58rem", letterSpacing: "0.1em", color: "#333", textDecoration: "none" }}
-          >Powered by <span style={{ color: primary }}>Central Bolivia</span></a>
+          >Powered by <span style={{ color: primary }}>Central</span></a>
         </div>
       </footer>
 

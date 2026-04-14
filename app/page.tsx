@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
     };
   }
   return {
-    title: "Central Bolivia — Tu agente digital 24/7",
+    title: "Central — Tu agente digital 24/7",
     description: "Portal inmobiliario propio con mapa interactivo, captura de leads y tecnología. Listo en 2 minutos.",
   };
 }
@@ -82,7 +82,7 @@ function MarketingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
             <div className="w-6 h-6 bg-[#FF7F11] rounded-sm" />
-            <span className="text-[#262626] font-serif text-xl font-medium">Central Bolivia</span>
+            <span className="text-[#262626] font-serif text-xl font-medium">Central</span>
           </div>
           <div className="flex items-center gap-6">
             <Link href="/login" className="label-caps text-[#6B7565] hover:text-[#262626] transition-colors hidden sm:block">
@@ -199,7 +199,7 @@ function MarketingPage() {
               <div className="w-3 h-3 rounded-full bg-yellow-400/60" />
               <div className="w-3 h-3 rounded-full bg-green-400/60" />
               <div className="flex-1 bg-white/5 rounded-sm h-5 mx-2 flex items-center px-3">
-                <span className="text-white/30 text-xs">tuagencia.centralbolivia.com</span>
+                <span className="text-white/30 text-xs">tuagencia.central.bo</span>
               </div>
             </div>
             <div className="bg-[#1a1a1a] rounded-sm overflow-hidden">
@@ -290,7 +290,7 @@ function MarketingPage() {
         <div className="relative mx-auto max-w-4xl rounded-sm overflow-hidden shadow-2xl" style={{ aspectRatio: "16/9" }}>
           <iframe
             src="https://www.youtube.com/embed/qb92U0A-Aus"
-            title="Central Bolivia Demo"
+            title="Central Demo"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowFullScreen
             className="absolute inset-0 w-full h-full"
@@ -390,9 +390,9 @@ function MarketingPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
           <div className="flex items-center gap-3">
             <div className="w-5 h-5 bg-[#FF7F11] rounded-sm" />
-            <span className="text-white text-sm font-medium">Central Bolivia</span>
+            <span className="text-white text-sm font-medium">Central</span>
           </div>
-          <p className="text-xs">© 2025 Central Bolivia. Hecho en Bolivia 🇧🇴</p>
+          <p className="text-xs">© 2025 Central. Hecho en Bolivia 🇧🇴</p>
           <div className="flex gap-6">
             <Link href="/login" className="label-caps hover:text-white transition-colors">Ingresar</Link>
             <Link href="/bienvenido" className="label-caps hover:text-white transition-colors">Registro</Link>

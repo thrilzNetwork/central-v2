@@ -103,11 +103,11 @@ export function ProfileEditor({ profile }: { profile: Profile | null }) {
           <label className="label-caps text-[#6B7565]">Tu URL de portal</label>
           <div className="flex items-center gap-2 flex-wrap">
             <div className="flex items-center border border-[#EAE7DC] rounded-sm bg-[#F7F5EE] px-3 py-2.5 min-w-0 flex-1">
-              <span className="text-xs text-[#ACBFA4] shrink-0">centralbolivia.com/</span>
+              <span className="text-xs text-[#ACBFA4] shrink-0">central.bo/</span>
               <span className="text-sm text-[#262626] font-medium truncate">{profile?.slug}</span>
             </div>
             <a
-              href={`https://${profile?.slug}.centralbolivia.com`}
+              href={`https://${profile?.slug}.central.bo`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 px-3 py-2.5 bg-[#FF7F11] text-white text-xs font-medium rounded-sm hover:bg-[#CC6500] transition-colors whitespace-nowrap"

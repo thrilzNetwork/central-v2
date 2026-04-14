@@ -5,7 +5,14 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = { title: "Facturación — Dashboard" };
 
-export default async function FacturacionPage() {
+export default async function FacturacionPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ nuevo?: string; expired?: string }>;
+}) {
+  const params = await searchParams;
+  const isNew = params.nuevo === "1";
+  const isExpired = params.expired === "true";
   const supabase = await createClient();
   const {
     data: { user },
@@ -29,6 +36,18 @@ export default async function FacturacionPage() {
     ? new Date(new Date(profile.created_at).getTime() + 3 * 24 * 60 * 60 * 1000).toISOString()
     : null;
 
+  const heading = isNew
+    ? "Activa tu portal"
+    : isExpired
+    ? "Tu prueba ha finalizado"
+    : "Tu Plan";
+
+  const subtext = isNew
+    ? "Elige tu plan ahora o empieza con 3 días de demo gratuita."
+    : isExpired
+    ? "Tu período de prueba terminó. Reactiva tu portal para seguir recibiendo leads."
+    : "Activa tu plan para continuar usando Central.";
+
   return (
     <div className="animate-fade-up max-w-3xl">
       <div className="mb-8">
@@ -41,11 +60,9 @@ export default async function FacturacionPage() {
             fontWeight: 500,
           }}
         >
-          Tu Plan
+          {heading}
         </h1>
-        <p className="text-sm text-[#6B7565] mt-1">
-          Activa tu plan para continuar usando Central Bolivia.
-        </p>
+        <p className="text-sm text-[#6B7565] mt-1">{subtext}</p>
       </div>
 
       <BillingPanel
@@ -55,6 +72,8 @@ export default async function FacturacionPage() {
         hasCustomer={false}
         userId={user.id}
         entitySlug={entitySlug}
+        isNew={isNew}
+        isExpired={isExpired}
       />
     </div>
   );
