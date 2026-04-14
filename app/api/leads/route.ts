@@ -54,7 +54,8 @@ export async function POST(request: NextRequest) {
 
     // Increment hearts on listing via RPC
     if (type === "heart" && listingId) {
-      await admin.rpc("increment_listing_hearts", { listing_id: listingId });
+      const { error: rpcError } = await admin.rpc("increment_listing_hearts", { listing_id: listingId });
+      if (rpcError) console.error("increment_listing_hearts failed:", rpcError.message);
     }
 
     // Notify realtor

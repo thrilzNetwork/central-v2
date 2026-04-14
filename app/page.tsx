@@ -140,7 +140,7 @@ function MarketingPage() {
             </Link>
           </div>
           <p className="text-xs text-[#ACBFA4] mt-5">
-            3 días de demo gratuita · Sin tarjeta de crédito · Precios a consultar
+            3 días de demo gratuita · Sin tarjeta de crédito · Desde $29/mo
           </p>
         </div>
 
@@ -285,7 +285,7 @@ function MarketingPage() {
             Planes a tu medida
           </h2>
           <p className="text-[#6B7565] text-lg max-w-xl mx-auto mb-12 leading-relaxed">
-            Para agentes independientes, equipos y brokerages. Contáctanos para una propuesta personalizada.
+            Para agentes independientes, equipos y brokerages. Sin contratos — cancela cuando quieras.
           </p>
           <div className="grid sm:grid-cols-2 gap-8 max-w-3xl mx-auto mb-10">
             {[

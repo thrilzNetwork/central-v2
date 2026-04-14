@@ -82,7 +82,8 @@ function parseC21Property(html: string, sourceUrl: string): ScrapedProperty {
     const match = cleanHtml.match(pattern);
     if (match) {
       const rawPrice = match[1].replace(/[.,]/g, '');
-      price = parseInt(rawPrice) || null;
+      const parsedPrice = parseInt(rawPrice, 10);
+      price = isNaN(parsedPrice) ? null : parsedPrice;
       if (cleanHtml.toLowerCase().includes('bs') || cleanHtml.toLowerCase().includes('boliviano')) {
         currency = 'BOB';
       }

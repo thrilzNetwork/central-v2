@@ -41,6 +41,13 @@ export async function POST(request: NextRequest) {
         whatsapp: whatsapp ?? null,
         theme: theme ?? "realtor-v1",
         onboarding_completed: true,
+        hero_images: null,
+        broker_name: null,
+        broker_logo_url: null,
+        broker_agent_code: null,
+        primary_color: "#FF7F11",
+        secondary_color: "#262626",
+        city: "",
       });
 
     if (error) {

@@ -82,7 +82,7 @@ export function ChatWidget({ realtorName, realtorPhone, primaryColor, profileId 
       await fetch("/api/leads", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ profileId, visitorName: data.name, visitorPhone: data.phone, note: `Busca: ${data.interest} | Presupuesto: ${data.budget}` }),
+        body: JSON.stringify({ profileId, visitorName: data.name, visitorPhone: data.phone, message: `Busca: ${data.interest} | Presupuesto: ${data.budget}` }),
       });
     } catch { /* non-fatal */ }
     setTimeout(() => {
