@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -87,6 +87,12 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   async function handleSignOut() {
     const supabase = createClient();
     await supabase.auth.signOut();
@@ -152,9 +158,11 @@ export function DashboardSidebar({ profile }: DashboardSidebarProps) {
         {profile?.slug && (
           <a
             href={
-              typeof window !== "undefined" && window.location.hostname === "localhost"
-                ? `http://${profile.slug}.localhost:3000`
-                : `https://${profile.slug}.central.bo`
+              !mounted
+                ? `https://${profile.slug}.central.bo`
+                : (window.location.hostname === "localhost"
+                  ? `http://${profile.slug}.localhost:3000`
+                  : `https://${profile.slug}.central.bo`)
             }
             target="_blank"
             rel="noopener noreferrer"
