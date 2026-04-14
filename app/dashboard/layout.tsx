@@ -25,9 +25,8 @@ export default async function DashboardLayout({ children }: { children: ReactNod
     org = orgData as { is_active: boolean; trial_expires_at: string } | null;
   }
 
-  if (profile && !profile.onboarding_completed) {
-    redirect("/bienvenido");
-  }
+  if (!profile) redirect("/login");
+  if (!profile.onboarding_completed) redirect("/bienvenido");
 
   return (
     <div className="flex min-h-dvh bg-[#F7F5EE]">
