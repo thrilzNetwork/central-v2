@@ -132,7 +132,7 @@ export function RealtorV1Header() {
                   onMouseEnter={e => (e.currentTarget.style.opacity = "0.85")}
                   onMouseLeave={e => (e.currentTarget.style.opacity = "1")}
                 >
-                  <MessageSquare size={13} /> WhatsApp
+                  <MessageSquare size={15} />
                 </a>
               )}
 

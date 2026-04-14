@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useTenant } from "@/components/themes/TenantContext";
 import { RealtorV1Header } from "./RealtorV1Header";
@@ -8,6 +9,8 @@ import { RealtorV1Footer } from "./RealtorV1Footer";
 import { HeartButton } from "@/components/property/HeartButton";
 import { formatPrice } from "@/lib/utils/formatCurrency";
 import type { Listing } from "@/types/tenant";
+
+const PropertyMapInner = dynamic(() => import("./PropertyMapInner"), { ssr: false, loading: () => <div style={{ height: 260, background: "#E2E8CE", borderRadius: 4 }} /> });
 
 interface PropertyDetailProps {
   listing: Listing;
@@ -104,6 +107,14 @@ export function PropertyDetail({ listing }: PropertyDetailProps) {
               <div className="mt-8 p-5 bg-[#E2E8CE] rounded-sm">
                 <h3 className="label-caps text-[#6B7565] mb-2">Contexto del Barrio</h3>
                 <p className="text-sm text-[#262626] leading-relaxed">{listing.neighborhood_summary}</p>
+              </div>
+            )}
+
+            {/* Interactive map */}
+            {listing.lat && listing.lng && (
+              <div className="mt-8">
+                <h2 className="text-[#262626] mb-3 label-caps text-[#6B7565]">Ubicación</h2>
+                <PropertyMapInner listing={listing} primaryColor={profile.primary_color ?? "#FF7F11"} />
               </div>
             )}
           </div>

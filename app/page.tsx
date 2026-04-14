@@ -6,6 +6,7 @@ import { TenantProvider } from "@/components/themes/TenantContext";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { RealtorV1Page } from "@/components/themes/realtor-v1/RealtorV1Page";
 import { ArrowRight, MapPin, Layout, Target, Users } from "lucide-react";
+import { LandingChatbot } from "@/components/LandingChatbot";
 import type { Metadata } from "next";
 
 // ─── Metadata ─────────────────────────────────────────────────
@@ -381,6 +382,8 @@ function MarketingPage() {
           <p className="text-[#6B7565] text-sm mt-4">3 días de demo · Sin tarjeta de crédito</p>
         </div>
       </section>
+
+      <LandingChatbot />
 
       {/* Footer */}
       <footer className="bg-[#1a1a1a] text-[#6B7565] py-10 border-t border-white/5">

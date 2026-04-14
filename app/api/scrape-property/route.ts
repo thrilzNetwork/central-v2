@@ -1,6 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
-import { scrapeC21Property, isValidC21Url } from "@/lib/scraper/c21";
+import { scrapeProperty, isValidUrl } from "@/lib/scraper/universal";
 
 export async function POST(request: NextRequest) {
   try {
@@ -11,28 +11,18 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    // Get URL from request
     const body = await request.json();
     const { url } = body;
 
-    if (!url || typeof url !== 'string') {
-      return NextResponse.json(
-        { error: "URL requerida" },
-        { status: 400 }
-      );
+    if (!url || typeof url !== "string") {
+      return NextResponse.json({ error: "URL requerida" }, { status: 400 });
     }
 
-    // Validate URL
-    if (!isValidC21Url(url)) {
-      return NextResponse.json(
-        { error: "Solo se aceptan URLs de Century 21 Bolivia (c21.com.bo)" },
-        { status: 400 }
-      );
+    if (!isValidUrl(url)) {
+      return NextResponse.json({ error: "URL inválida. Debe comenzar con http:// o https://" }, { status: 400 });
     }
 
-    // Scrape the property
-    const property = await scrapeC21Property(url);
-
+    const property = await scrapeProperty(url);
     return NextResponse.json(property);
   } catch (err) {
     console.error("scrape-property error:", err);
