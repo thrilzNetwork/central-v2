@@ -80,10 +80,9 @@ const NAV: NavItem[] = [
 
 interface DashboardSidebarProps {
   profile: { full_name: string; logo_url: string | null; primary_color: string; slug: string } | null;
-  userId: string;
 }
 
-export function DashboardSidebar({ profile, userId }: DashboardSidebarProps) {
+export function DashboardSidebar({ profile }: DashboardSidebarProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [mobileOpen, setMobileOpen] = useState(false);

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import Link from "next/link";
 import { useTenant } from "@/components/themes/TenantContext";
 import { RealtorV1Header } from "./RealtorV1Header";
 import { RealtorV1Footer } from "./RealtorV1Footer";
@@ -36,9 +37,9 @@ export function PropertyDetail({ listing }: PropertyDetailProps) {
       <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
         {/* Breadcrumb */}
         <nav className="flex items-center gap-2 label-caps text-[#6B7565] mb-8">
-          <a href="/" className="hover:text-[#262626] transition-colors">Inicio</a>
+          <Link href="/" className="hover:text-[#262626] transition-colors">Inicio</Link>
           <span>/</span>
-          <a href="/propiedades" className="hover:text-[#262626] transition-colors">Inmuebles</a>
+          <Link href="/propiedades" className="hover:text-[#262626] transition-colors">Inmuebles</Link>
           <span>/</span>
           <span className="text-[#262626] truncate max-w-xs">{listing.title}</span>
         </nav>
@@ -208,7 +209,7 @@ export function PropertyDetail({ listing }: PropertyDetailProps) {
   );
 }
 
-function SpecItem({ icon, label, value }: { icon: string; label: string; value: string }) {
+function SpecItem({ label, value }: { label: string; value: string }) {
   return (
     <div className="bg-white border border-[#EAE7DC] rounded-sm px-3 py-2.5">
       <p className="label-caps text-[#6B7565] mb-0.5">{label}</p>

@@ -12,7 +12,6 @@ type InputMode = "address" | "pdf" | "image";
 type PropertyType = "casa" | "departamento" | "terreno" | "oficina" | "local_comercial" | "otro";
 
 export function MagicPropertyForm() {
-  const router = useRouter();
   const [mode, setMode] = useState<InputMode>("address");
   const [address, setAddress] = useState("");
   // lat/lng from autocomplete selection (pre-geocoded before magic populate)

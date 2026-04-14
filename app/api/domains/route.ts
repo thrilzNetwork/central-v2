@@ -1,7 +1,7 @@
 import { NextResponse, type NextRequest } from "next/server";
 import { createClient } from "@/lib/supabase/server";
 import { createAdminClient } from "@/lib/supabase/admin";
-import { addDomain, removeDomain, getDomainStatus } from "@/lib/vercel-domains/client";
+import { addDomain, removeDomain } from "@/lib/vercel-domains/client";
 
 export async function POST(request: NextRequest) {
   try {
@@ -67,7 +67,7 @@ export async function POST(request: NextRequest) {
   }
 }
 
-export async function GET(request: NextRequest) {
+export async function GET() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });

@@ -59,7 +59,7 @@ export async function PATCH(request: NextRequest) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { data: upserted, error: upsertError } = await admin
         .from("profiles")
-        .upsert({ id: user.id, email: user.email ?? "", full_name: "", slug: fallbackSlug, ...updatePayload } as any)
+        .upsert({ id: user.id, email: user.email ?? "", full_name: "", slug: fallbackSlug, ...updatePayload })
         .select()
         .single();
       if (upsertError) return NextResponse.json({ error: upsertError.message }, { status: 500 });

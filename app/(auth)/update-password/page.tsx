@@ -45,7 +45,16 @@ function UpdatePasswordInner() {
   }, [searchParams]);
 
   useEffect(() => {
-    exchangeCode();
+    let isMounted = true;
+    const runExchange = async () => {
+      await exchangeCode();
+      if (!isMounted) {
+        // If component unmounted during async call,
+        // we avoid setting state to prevent memory leaks/errors
+      }
+    };
+    runExchange();
+    return () => { isMounted = false; };
   }, [exchangeCode]);
 
   async function handleUpdate(e: React.FormEvent) {

@@ -21,7 +21,7 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function TenantHomePage() {
   const headerStore = await headers();
-  const tenantSlug = headerStore.get("x-tenant-slug") ?? "";
+  const _tenantSlug = headerStore.get("x-tenant-slug") ?? "";
 
   const supabase = createAdminClient();
   const { data: listings } = await supabase

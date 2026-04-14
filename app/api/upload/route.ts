@@ -39,7 +39,7 @@ export async function POST(request: NextRequest) {
     const { data: { publicUrl } } = admin.storage.from(bucket).getPublicUrl(data.path);
 
     return NextResponse.json({ url: publicUrl, path: data.path });
-  } catch (err) {
+  } catch (_err) {
     return NextResponse.json({ error: "Upload failed" }, { status: 500 });
   }
 }

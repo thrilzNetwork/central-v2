@@ -19,13 +19,21 @@ export function TrialGuard({
   const [timeLeft, setTimeLeft] = useState<{ days: number; hours: number } | null>(null);
 
   const expiresOn = new Date(trialExpiresAt).getTime();
-  const isExpired = Date.now() >= expiresOn || !isActive;
+  const [isExpired, setIsExpired] = useState(false);
 
   useEffect(() => {
-    if (isExpired && pathname !== "/dashboard/facturacion") {
+    const checkExpiration = () => {
+      const now = Date.now();
+      const expired = now >= expiresOn || !isActive;
+      setIsExpired(expired);
+      return expired;
+    };
+
+    const currentExpired = checkExpiration();
+    if (currentExpired && pathname !== "/dashboard/facturacion") {
       router.push("/dashboard/facturacion?expired=true");
     }
-  }, [isExpired, pathname, router]);
+  }, [expiresOn, isActive, pathname, router]);
 
   useEffect(() => {
     const calcTime = () => {
