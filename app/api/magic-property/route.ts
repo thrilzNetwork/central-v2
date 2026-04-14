@@ -1,7 +1,6 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { GoogleGenerativeAI, InlineDataPart } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY ?? "");
+const GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent";
 
 export async function POST(request: NextRequest) {
   try {
@@ -12,9 +11,13 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Se requiere dirección, archivo PDF o imagen" }, { status: 400 });
     }
 
-    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
+    const apiKey = process.env.GEMINI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ error: "GEMINI_API_KEY no configurado" }, { status: 500 });
+    }
 
-    let result;
+    let parts: Array<{ text?: string; inlineData?: { data: string; mimeType: string } }> = [];
+
     if (pdfBase64 || imageBase64) {
       const base64Data = (pdfBase64 || imageBase64).replace(/^data:.*?;base64,/, "");
       let mimeType = "application/octet-stream";
@@ -28,26 +31,19 @@ export async function POST(request: NextRequest) {
           mimeType = "image/jpeg";
         } else if (fileName?.match(/\.(webp|WEBP)$/)) {
           mimeType = "image/webp";
-        } else if (imageBase64.startsWith("iVBOR") || fileName?.match(/\.png$/i)) {
+        } else if (imageBase64.startsWith("iVBOR")) {
           mimeType = "image/png";
-        } else if (imageBase64.startsWith("/9j/") || fileName?.match(/\.jpe?g$/i)) {
+        } else if (imageBase64.startsWith("/9j/")) {
           mimeType = "image/jpeg";
-        } else if (imageBase64.startsWith("UklGR") || fileName?.match(/\.webp$/i)) {
+        } else if (imageBase64.startsWith("UklGR")) {
           mimeType = "image/webp";
         }
       }
 
       const isPdf = mimeType === "application/pdf";
 
-      const imagePart: InlineDataPart = {
-        inlineData: {
-          data: base64Data,
-          mimeType,
-        },
-      };
-
-      result = await model.generateContent([
-        imagePart,
+      parts = [
+        { inlineData: { data: base64Data, mimeType } },
         {
           text: `Extrae la siguiente información de ${isPdf ? "este documento PDF" : "esta imagen"} de propiedad inmobiliaria en Bolivia:
 - Título/Anuncio
@@ -79,9 +75,9 @@ Responde SOLO en JSON con este formato exacto, sin texto adicional:
   "lng": null
 }`,
         },
-      ]);
+      ];
     } else {
-      result = await model.generateContent([
+      parts = [
         {
           text: `Busca información sobre la siguiente dirección de propiedad inmobiliaria en Bolivia: "${address}"
 
@@ -97,11 +93,22 @@ Responde SOLO en JSON con este formato exacto, sin texto adicional:
   "neighborhood_summary": ""
 }`,
         },
-      ]);
+      ];
     }
 
-    const response = result.response;
-    const text = response.text();
+    const response = await fetch(`${GEMINI_API_URL}?key=${apiKey}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ contents: [{ parts }] }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      throw new Error(`Gemini API error: ${response.status} - ${errorText}`);
+    }
+
+    const data = await response.json();
+    const text = data.candidates?.[0]?.content?.parts?.[0]?.text || "";
 
     try {
       const jsonMatch = text.match(/\{[\s\S]*\}/);
