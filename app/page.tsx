@@ -277,6 +277,26 @@ function MarketingPage() {
         </div>
       </section>
 
+      {/* Demo video */}
+      <section className="py-28 max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-12">
+          <span className="label-caps text-[#6B7565]">Demo en vivo</span>
+          <h2 className="text-[#262626] mt-3 font-serif" style={{ fontSize: "clamp(2rem, 4vw, 3rem)" }}>
+            Míralo funcionar en<br />
+            <em className="text-[#FF7F11] not-italic">2 minutos.</em>
+          </h2>
+        </div>
+        <div className="relative mx-auto max-w-4xl rounded-sm overflow-hidden shadow-2xl" style={{ aspectRatio: "16/9" }}>
+          <iframe
+            src="https://www.youtube.com/embed/qb92U0A-Aus"
+            title="Central Bolivia Demo"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowFullScreen
+            className="absolute inset-0 w-full h-full"
+          />
+        </div>
+      </section>
+
       {/* Pricing — contact */}
       <section className="bg-white py-28 border-t border-[#EAE7DC]">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 text-center">
